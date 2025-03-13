@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:isolate';
+import 'dart:math';
 
 void main() {
   start();
@@ -74,7 +75,7 @@ void philosopher(SendPort sendPort) {
       });
     } else {
       print('Philosopher $id is thinking.');
-      Future.delayed(Duration(seconds: 2), () {
+      Future.delayed(Duration(seconds: Random().nextInt(3)), () {
         coordinatorPort?.send({
           'id': id!,
           'request': 'pickup',
